@@ -11,11 +11,11 @@ int partition(vector<int>& vec, int left, int right)
 
     while(low <= high)
     {
-        //find number that bigger than pivot
+        //find number that smaller than pivot
         while(pivot > vec[low] && low <= right)
             low++;
 
-        //find number that smaller than pivot
+        //find number that bigger than pivot
         while(pivot < vec[high] && high > left)
             high--;
 
