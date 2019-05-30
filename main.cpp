@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <limits>
 
 using namespace std;
 
@@ -10,20 +11,17 @@ public:
     int maxProfit(vector<int>& prices) {
 
         int maxProfit = 0;
+        int minPrice = INT32_MAX;
 
         for(int i = 0; i < prices.size(); i++)
         {
-            for(int j = i; j < prices.size(); j++)
-            {
-                int profit = prices[j] - prices[i];
-                maxProfit = max(maxProfit, profit);
-            }
+            if(prices[i] < minPrice)
+                minPrice = prices[i];
+            else if(prices[i] - minPrice > maxProfit)
+                maxProfit = prices[i] - minPrice;
         }
 
-        if(maxProfit <= 0)
-            return 0;
-        else
-            return maxProfit;
+        return maxProfit;
     }
 };
 
