@@ -10,24 +10,23 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
 
-        int maxProfit = 0;
-        int minPrice = INT32_MAX;
+        if(prices.size() < 1)
+            return 0;
 
-        for(int i = 0; i < prices.size(); i++)
+        int totalProfit = 0;
+        for(int i = 1; i < prices.size(); i++)
         {
-            if(prices[i] < minPrice)
-                minPrice = prices[i];
-            else if(prices[i] - minPrice > maxProfit)
-                maxProfit = prices[i] - minPrice;
+            if(prices[i] > prices[i - 1])
+                totalProfit = totalProfit + (prices[i] - prices[i - 1]);
         }
 
-        return maxProfit;
+        return totalProfit;
     }
 };
 
 int main()
 {
-    vector<int> input = {7,1,5,3,6,4}; //expected output: 5
+    vector<int> input = {7,1,5,3,6,4}; //expected output: 7
     Solution obj;
     cout << obj.maxProfit(input) << endl;
 
